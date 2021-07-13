@@ -59,18 +59,24 @@
 
 <script>
 const keys = document.querySelectorAll('div[data-key]');
-const audios = document.querySelectorAll('audio');
-console.log(keys, audios)
 
-keys.forEach((key, i)=> key.addEventListener('click', ()=>{
-  console.log(i)
-  console.log('ok')
-}))
 window.addEventListener('keydown', (e) => {
-
-  console.log(e.keyCode)
   const numberKey = e.keyCode; 
-  keys.forEach(key => console.log(key.dataset.key))
+  keys.forEach(key => {
+    console.log(numberKey, key.dataset.key)
+    if(numberKey == key.dataset.key){
+      key.classList.add('playing')
+      document.querySelector(`audio[data-key="${numberKey}"]`).play();
+    }
+  })
+})
+
+window.addEventListener('keyup', (e) => {
+  keys.forEach(key =>{
+    if(key.classList.contains('playing')){
+      key.classList.remove('playing');
+    }
+  })
 })
 </script>
 
