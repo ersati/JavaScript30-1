@@ -22,9 +22,9 @@
 
   <style>
     :root{
-      --space: 0px;
-      --blur: 0px;
-      --color:#ffffff;
+      --space: 10px;
+      --blur: 10px;
+      --color:#ffc600;
     }
 
     /*
@@ -52,6 +52,9 @@
       background: var(--color);
       filter: blur(var(--blur));
     }
+    .hl{
+      color:var(--color)
+    }
   </style>
 
   <script>
@@ -65,7 +68,7 @@
       const inputColor = document.querySelector('#base')
 
       root.style.setProperty('--space', `${inputSpace.value}px`);
-      root.style.setProperty('--color', `${inputColor.value}px`);
+      root.style.setProperty('--color', `${inputColor.value}`);
       root.style.setProperty('--blur', `${inputBlur.value}px`);
     }))
   </script>
