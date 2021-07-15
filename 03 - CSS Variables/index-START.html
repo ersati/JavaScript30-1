@@ -21,6 +21,11 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root{
+      --space: 0px;
+      --blur: 0px;
+      --color:#ffffff;
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -42,9 +47,27 @@
     input {
       width: 100px;
     }
+    img {
+      padding: var(--space);
+      background: var(--color);
+      filter: blur(var(--blur));
+    }
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('input');
+    let root = document.querySelector(':root')
+    console.log(root)
+    
+    inputs.forEach(input => input.addEventListener('change', () => {
+      const inputSpace = document.querySelector('#spacing');
+      const inputBlur = document.querySelector('#blur');
+      const inputColor = document.querySelector('#base')
+
+      root.style.setProperty('--space', `${inputSpace.value}px`);
+      root.style.setProperty('--color', `${inputColor.value}px`);
+      root.style.setProperty('--blur', `${inputBlur.value}px`);
+    }))
   </script>
 
 </body>
