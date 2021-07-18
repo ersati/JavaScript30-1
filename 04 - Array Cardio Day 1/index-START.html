@@ -66,7 +66,7 @@ const fullName = inventors.map(person => {
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-    console.log(inventors)
+    
     const allYears = inventors.reduce((total, current) => {
     
       
@@ -80,7 +80,7 @@ const fullName = inventors.map(person => {
       
       return  (a.passed - a.year) - (b.passed - b.year)
     })
-    console.log(inventorsByYears)
+    
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -92,7 +92,7 @@ const fullName = inventors.map(person => {
       return a.last - b.last
     })
 
-    console.log(sortByLastName)
+    
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
