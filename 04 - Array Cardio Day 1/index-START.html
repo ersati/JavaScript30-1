@@ -88,15 +88,29 @@ const fullName = inventors.map(person => {
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-    const sortByLastName = inventors.sort((a, b) => {
-      return a.last - b.last
+    const sortByLastName = people.sort((last, next) => {
+      
+      const [aLast, aFirst] = last.split(', ');
+      const [bLast, bFirst ] = next.split(', ');
+
+      console.log(aLast, aFirst)
+      return aLast > bLast ? 1 : -1;
     })
+
+    
 
     
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const countedData = data.reduce((prev, cur) => {
+      prev[cur] = (prev[cur] || 0 ) + 1;
+      return prev
+    }, {})
+    
+
 
   </script>
 </body>
