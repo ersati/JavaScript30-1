@@ -36,8 +36,8 @@
       color: white;
       text-align: center;
       justify-content: space-between;
-      /* align-items: flex-end; */
-      align-content: space-between;
+      align-items: center;
+      /* align-content: space-between; */
       /* Safari transitionend event.propertyName === flex */
       /* Chrome + FF transitionend event.propertyName === flex-grow */
       flex-grow: 1;
@@ -75,7 +75,21 @@
       text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
       font-size: 2em;
     }
-    
+    .panel p:first-child {
+      transform: translateY(-100px);
+    }
+    .panel p:last-child {
+      transform: translateY(100px);
+    }
+    .active {
+      flex-grow: 5;
+    }
+    .active p:first-child {
+      transform: translateY(0px);
+    }
+    .active p:last-child {
+      transform: translateY(0px);
+    }
     .panel p:nth-child(2) {
       font-size: 4em;
     }
@@ -116,7 +130,17 @@
   </div>
 
   <script>
-
+    const panels = document.querySelectorAll(".panel");
+    panels.forEach(panel => {
+      panel.addEventListener('click', (e) => {
+        console.log(e.target)
+        const pic = e.target;
+        pic.classList.toggle('active');
+      })
+    })
+// window.addEventListener('click', (e) => {
+//   console.log(e.target)
+// })
   </script>
 
 
