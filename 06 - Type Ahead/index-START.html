@@ -16,6 +16,32 @@
   </form>
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const randomItems = [ 'monday', 'tuesday', 'i won'];
+const suggestions = document.querySelector('ul.suggestions');
+const search = document.querySelector('.search')
+const liItems = randomItems.map(item => `<li>${item}</li>`);
+
+
+const cities = []
+liItems.forEach(item => suggestions.innerHTML += item)
+console.log(liItems);
+
+ fetch(endpoint)
+.then(res => res.json())
+.then(data => cities.push(...data));
+
+
+function findItem (cities){
+const filterCities = cities.filter(place => place.city.includes(search.value))
+console.log(filterCities)
+return filterCities
+}
+
+search.addEventListener('change', () => findItem(cities))
+function displayItem () {
+
+}
+console.log(cities)
 
 </script>
 </body>
