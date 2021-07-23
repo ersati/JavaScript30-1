@@ -30,18 +30,22 @@ console.log(liItems);
 .then(res => res.json())
 .then(data => cities.push(...data));
 
+// console.log(yorkCities)
+
+
 
 function findItem (cities){
-const filterCities = cities.filter(place => place.city.includes(search.value))
-console.log(filterCities)
-return filterCities
+  const yorkCities = cities.filter(place => place.city == "New York")
+  console.log(yorkCities)
+return yorkCities
 }
+
 
 search.addEventListener('change', () => findItem(cities))
 function displayItem () {
 
 }
-console.log(cities)
+
 
 </script>
 </body>
