@@ -16,35 +16,39 @@
   </form>
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-const randomItems = [ 'monday', 'tuesday', 'i won'];
 const suggestions = document.querySelector('ul.suggestions');
 const search = document.querySelector('.search')
-const liItems = randomItems.map(item => `<li>${item}</li>`);
-
 
 const cities = []
-liItems.forEach(item => suggestions.innerHTML += item)
-console.log(liItems);
 
- fetch(endpoint)
+fetch(endpoint)
 .then(res => res.json())
 .then(data => cities.push(...data));
 
-// console.log(yorkCities)
-
-
-
 function findItem (cities){
-  const yorkCities = cities.filter(place => place.city == "New York")
-  console.log(yorkCities)
-return yorkCities
+
+  suggestions.innerHTML = '';
+  const value= search.value.toUpperCase();
+
+  let place,state, population;
+  
+  for(let i =0; i < cities.length; i++){
+    place = cities[i].city;
+    state = cities[i].state;
+    population = cities[i].population;
+    if(search.value == ''){
+  suggestions.innerHTML = '';
+}
+    if(place.toUpperCase().indexOf(value) > -1 || state.toUpperCase().indexOf(value) > -1){
+      suggestions.innerHTML += `<li>${place}, ${state}, <span class="population">${population} </span></li>`
+    } 
+  }
+return 
 }
 
 
-search.addEventListener('change', () => findItem(cities))
-function displayItem () {
+search.addEventListener('keyup', () => findItem(cities))
 
-}
 
 
 </script>
