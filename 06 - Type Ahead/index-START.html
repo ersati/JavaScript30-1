@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Type Ahead 👀</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <form class="search-form">
@@ -14,43 +16,43 @@
       <li>or a state</li>
     </ul>
   </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-const suggestions = document.querySelector('ul.suggestions');
-const search = document.querySelector('.search')
+  <script>
+    const endpoint =
+      'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    const suggestions = document.querySelector('ul.suggestions');
+    const search = document.querySelector('.search')
 
-const cities = []
+    const cities = []
 
-fetch(endpoint)
-.then(res => res.json())
-.then(data => cities.push(...data));
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(data => cities.push(...data));
 
-function findItem (cities){
+    function findItem(cities) {
 
-  suggestions.innerHTML = '';
-  const value= search.value.toUpperCase();
+      suggestions.innerHTML = '';
+      const value = search.value.toUpperCase();
 
-  let place,state, population;
-  
-  for(let i =0; i < cities.length; i++){
-    place = cities[i].city;
-    state = cities[i].state;
-    population = cities[i].population;
-    if(search.value == ''){
-  suggestions.innerHTML = '';
-}
-    if(place.toUpperCase().indexOf(value) > -1 || state.toUpperCase().indexOf(value) > -1){
-      suggestions.innerHTML += `<li>${place}, ${state}, <span class="population">${population} </span></li>`
-    } 
-  }
-return 
-}
+      let place, state, population;
 
+      for (let i = 0; i < cities.length; i++) {
+        place = cities[i].city;
+        state = cities[i].state;
+        population = cities[i].population;
+        if (place.toUpperCase().indexOf(value) > -1 || state.toUpperCase().indexOf(value) > -1) {
+          suggestions.innerHTML += `<li>${place}, ${state}, <span class="population">${population} </span></li>`
+        }
+        if (search.value == "") {
 
-search.addEventListener('keyup', () => findItem(cities))
-
+          suggestions.innerHTML = '<li>Filter for A city or State</li>';
+        }
+      }
+      return
+    }
 
 
-</script>
+    search.addEventListener('keyup', () => findItem(cities))
+  </script>
 </body>
+
 </html>
