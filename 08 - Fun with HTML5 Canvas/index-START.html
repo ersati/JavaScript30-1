@@ -12,6 +12,16 @@
   const ctx = canvas.getContext("2d");
   ctx.fillStyle = "#FF0000";
 ctx.fillRect(0, 0, 150, 75);
+
+console.log(canvas.clientWidth, )
+
+canvas.addEventListener('mousemove', (e) => {
+  console.log(e.clientX, e.clientY)
+  ctx.beginPath();
+  ctx.moveTo(e.clientX,e.clientY);
+    ctx.lineTo(e.clientX + 5,e.clientY+ 5);
+    ctx.fill();
+})
 </script>
 
 <style>
