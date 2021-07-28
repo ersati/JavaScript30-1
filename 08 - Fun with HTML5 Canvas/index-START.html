@@ -1,34 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>HTML5 Canvas</title>
 </head>
+
 <body>
-<canvas id="draw" width="800" height="800"></canvas>
-<script>
+  <canvas id="draw" width="800" height="800"></canvas>
+  <script>
+    const canvas = document.getElementById("draw");
+    const ctx = canvas.getContext("2d");
 
-  const canvas = document.getElementById("draw");
-  const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#FF0000";
-ctx.fillRect(0, 0, 150, 75);
+    ctx.canvas.width = window.innerWidth;
+    ctx.canvas.height = window.innerHeight;
 
-console.log(canvas.clientWidth, )
 
-canvas.addEventListener('mousemove', (e) => {
-  console.log(e.clientX, e.clientY)
-  ctx.beginPath();
-  ctx.moveTo(e.clientX,e.clientY);
-    ctx.lineTo(e.clientX + 5,e.clientY+ 5);
-    ctx.fill();
-})
-</script>
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 100;
 
-<style>
-  html, body {
-    margin: 0;
-  }
-</style>
+    let isDrawing = false
+    let hsl = 0
+    canvas.addEventListener('mousemove', (e) => {
+
+      if (!isDrawing) return
+
+      let lastX = 0;
+      let lastY = 0;
+      lastX = e.offsetX;
+      lastY = e.offsetY;
+
+      ctx.strokeStyle = `hsl(${hsl}, 100%, 50%)`;
+
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+
+      hsl++;
+      if (hsl >= 360) {
+        hsl = 0;
+      }
+
+
+    })
+
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+    })
+    canvas.addEventListener('mouseup', (e) => {
+      isDrawing = false;
+    })
+    canvas.addEventListener('mouseout', (e) => {
+      isDrawing = false;
+    })
+  </script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+  </style>
 
 </body>
+
 </html>
