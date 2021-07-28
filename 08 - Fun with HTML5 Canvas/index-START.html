@@ -28,6 +28,7 @@
 
       let lastX = 0;
       let lastY = 0;
+      let direction = true;
       lastX = e.offsetX;
       lastY = e.offsetY;
 
@@ -42,7 +43,17 @@
       if (hsl >= 360) {
         hsl = 0;
       }
+      if(direction){
+        ctx.lineWidth++  
+      }else {
+        ctx.lineWidth--
+      }
 
+      if(ctx.lineWidth > 150){
+        direction = false
+      } else {
+        direction = true;
+      }
 
     })
 
